@@ -1,0 +1,28 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@mhmdzaien/nuxt-sequelize": "^1.0.0-alpha.4",
+    "bootstrap": "^5.3.2",
+    "bootstrap-icons": "^1.11.3",
+    "nuxt": "^3.14.1592",
+    "sass": "^1.78.0",
+    "sass-embedded": "1.83.0",
+    "sweetalert2": "^11.15.10",
+    "vue": "latest",
+    "vue-router": "latest",
+    "vue3-easy-data-table": "^1.5.47"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/bootstrap": "^5.2.10"
+  }
+}
