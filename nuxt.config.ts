@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   },
 
   devtools: { enabled: true },
-  modules: ['@mhmdzaien/nuxt-sequelize'],
+  modules: ['@mhmdzaien/nuxt-sequelize', '@pinia/nuxt'],
 
   css: [
     'bootstrap/dist/css/bootstrap.min.css'

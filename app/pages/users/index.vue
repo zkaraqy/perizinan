@@ -28,6 +28,10 @@
 import type { Header } from 'vue3-easy-data-table';
 import { UserType } from '~~/types/user';
 
+definePageMeta({
+  middleware: "auth"
+})
+
 const headers: Header[] = [
   { text: "Username", value: "username", sortable: true },
   { text: "Role", value: "role", sortable: true },
