@@ -42,6 +42,8 @@
 </template>
 
 <script lang="ts" setup>
+import '~/assets/scss/adminlte.scss';
+import '~/assets/css/bootstrap-icons.min.css';
 definePageMeta({
   layout: false
 })
@@ -77,6 +79,6 @@ async function login() {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/adminlte.scss';
-@import '~/assets/css/bootstrap-icons.min.css';
+ @import '~/assets/scss/adminlte.scss';
+ @import '~/assets/css/bootstrap-icons.min.css';
 </style>

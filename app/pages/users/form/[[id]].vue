@@ -10,9 +10,10 @@
       <form>
         <!--begin::Body-->
         <div class="card-body">
+          <FormInput v-model="user.fullName" :invalid-feedback="validation.fullName" :label="'Full Name'" />
           <FormInput v-model="user.username" :invalid-feedback="validation.username" :label="'Username'" />
-          <FormInput v-model="user.password" type="password" :invalid-feedback="validation.password" :label="'Password'" />
-          <FormInput v-model="user.confirmPassword" type="password" :invalid-feedback="validation.confirmPassword" :label="'Konfirmasi Password'" />
+          <FormInput v-if="!$route.params.id" v-model="user.password" type="password" :invalid-feedback="validation.password" :label="'Password'" />
+          <FormInput v-if="!$route.params.id" v-model="user.confirmPassword" type="password" :invalid-feedback="validation.confirmPassword" :label="'Konfirmasi Password'" />
           <!-- <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input v-model="user.password" type="password" class="form-control"
@@ -79,12 +80,14 @@ definePageMeta({
 const isLoading = ref(false)
 
 const user: Ref<{
+  fullName?: string;
   username?: string;
   password?: string;
   confirmPassword?: string;
   role?: number;
 }> = ref({})
 const validation: Ref<{
+  fullName?: string;
   username?: string;
   password?: string;
   confirmPassword?: string;
@@ -118,6 +121,20 @@ const onSave = () => {
       isLoading.value = false
     })
 }
+
+onMounted(() => {
+  const id = useRoute().params?.id;
+  if (id) {
+    isLoading.value = true
+    $fetch('/api/users/' + id)
+      .then((result: any) => {
+        user.value = result;
+      })
+      .finally(() => {
+        isLoading.value = false
+      })
+  }
+})
 
 </script>
 

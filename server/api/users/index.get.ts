@@ -1,4 +1,5 @@
 import { User } from "~~/server/models";
+import { UserType } from "~~/types/user";
 
 export default defineMyEventHandler(async (event) => {
   const params = useGridParam(event)
@@ -7,4 +8,4 @@ export default defineMyEventHandler(async (event) => {
   return {
     data, count
   };
-})
+}, [UserType.ROLE_ADMIN]) 

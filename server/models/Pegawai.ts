@@ -53,7 +53,7 @@ export class Pegawai extends Model<
         }, {
             sequelize,
             tableName: "pegawai",
-            underscored: true
+            underscored: false
         })
 
         return Pegawai

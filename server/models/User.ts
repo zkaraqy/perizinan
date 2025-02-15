@@ -19,6 +19,7 @@ export class User extends Model<
   declare role: number | null;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
+  declare fullName: string | null;
 
   static initModel(sequelize: Sequelize): typeof User {
     User.init(
@@ -30,6 +31,9 @@ export class User extends Model<
           defaultValue: DataTypes.UUIDV4,
         },
         username: {
+          type: DataTypes.STRING,
+        },
+        fullName: {
           type: DataTypes.STRING,
         },
         role: {

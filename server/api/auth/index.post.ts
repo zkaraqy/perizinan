@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   if (user) {
     const confirmPassword = await comparePassword(data.password, user!.password!);
     if (confirmPassword) {
-      const accessToken = encodeAccessToken({ username: user!.username!, id: user!.id }, true, event);
+      const accessToken = encodeAccessToken(user.dataValues, true, event);
       const refreshToken = encodeRefreshToken(user!.id);
       return {
         accessToken: accessToken,

@@ -16,8 +16,11 @@
           <span>{{ formatISODate(createdAt) }}</span>
         </template>
         <template #item-id="{ id }">
-          <button class="btn btn-danger">Hapus</button>
-          <button class="btn btn-info mx-1">Detail</button>
+          <div class="d-flex gap-2">
+            <NuxtLink :to="'/users/form/' + id" class="btn btn-warning">Edit</NuxtLink>
+            <NuxtLink class="btn btn-info">Detail</NuxtLink>
+            <button class="btn btn-danger">Hapus</button>
+          </div>
         </template>
       </DataGrid>
     </div>
