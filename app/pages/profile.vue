@@ -3,7 +3,7 @@
     <div class="card card-primary card-outline mb-4">
       <!--begin::Header-->
       <div class="card-header">
-        <div class="card-title">Form User</div>
+        <div class="card-title">Profile Anda</div>
       </div>
       <!--end::Header-->
       <!--begin::Form-->
@@ -26,7 +26,7 @@
             :label="'Username'"
             />
           </div>
-          <FormInput
+          <!-- <FormInput
             v-if="!$route.params.id"
             v-model="user.password"
             type="password"
@@ -39,7 +39,7 @@
             type="password"
             :invalid-feedback="validation.confirmPassword"
             :label="'Konfirmasi Password'"
-          />
+          /> -->
           <!-- <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input v-model="user.password" type="password" class="form-control"
@@ -116,7 +116,7 @@ import Swal from "sweetalert2";
 import { UserType } from "~~/types/user";
 
 definePageMeta({
-  breadcrumbs: "User Form",
+  breadcrumbs: "Profile",
 });
 
 const isLoading = ref(false);
@@ -124,37 +124,32 @@ const isLoading = ref(false);
 const user: Ref<{
   fullName?: string;
   username?: string;
-  password?: string;
-  confirmPassword?: string;
   role?: number;
 }> = ref({});
 const validation: Ref<{
   fullName?: string;
   username?: string;
-  password?: string;
-  confirmPassword?: string;
   role?: number;
 }> = ref({});
 
 const onSave = () => {
   isLoading.value = true;
   validation.value = {};
-  const id = useRoute().params.id;
-  const url = id ? "/api/users/" + id : "/api/users"
-  const method = useRoute().params.id ? "PUT" : "POST"
+  const id = useCurrentUserStore().profile?.id;
+  
   $fetch(
-    url,
-    { method, body: user.value }
+    "/api/profile/" + id,
+    { method: "PUT", body: user.value }
   )
     .then((res) => {
       Swal.fire({
         icon: "success",
         title: "Success",
-        text: "User Berhasil Ditambahkan",
+        text: "Profile Berhasil Diedit",
       });
       console.log(res)
       user.value = {};
-      navigateTo('/users')
+      navigateTo('/profile')
     })
     .catch((err) => {
       console.log(err.data);
@@ -171,10 +166,11 @@ const onSave = () => {
 };
 
 onMounted(() => {
-  const id = useRoute().params?.id;
+  const id = useCurrentUserStore().profile?.id
+  console.log(useCurrentUserStore().profile)
   if (id) {
     isLoading.value = true;
-    $fetch("/api/users/" + id)
+    $fetch("/api/profile/" + id)
       .then((result: any) => {
         user.value = result;
       })

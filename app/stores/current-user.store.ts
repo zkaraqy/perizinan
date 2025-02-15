@@ -7,6 +7,7 @@ interface Credential {
 
 interface Profile {
   username?: string;
+  id?: string;
 }
 
 export const useCurrentUserStore = defineStore("currentUser", () => {
